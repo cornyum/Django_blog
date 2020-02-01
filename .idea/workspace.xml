@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26337127-4bce-4aa7-8bd6-c0ec94f2bdfc" name="Default Changelist" comment="" />
+    <list default="true" id="26337127-4bce-4aa7-8bd6-c0ec94f2bdfc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogproject/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +75,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1WFyHxdmO9IY5xXSlOHt9eFJkZY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -80,6 +88,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
@@ -186,7 +195,7 @@
       <workItem from="1580360479778" duration="7667000" />
       <workItem from="1580368417000" duration="4888000" />
       <workItem from="1580441658300" duration="21286000" />
-      <workItem from="1580551219899" duration="1323000" />
+      <workItem from="1580551219899" duration="2196000" />
     </task>
     <servers />
   </component>
@@ -194,6 +203,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1030" y="179" key="#Deployment" timestamp="1580576265941">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1030" y="179" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1580576265941" />
     <state x="314" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580367127203">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -202,10 +215,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="285" y="240" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1580305431151" />
-    <state x="776" y="278" key="FileChooserDialogImpl" timestamp="1579755655381">
+    <state x="776" y="278" key="FileChooserDialogImpl" timestamp="1580576111047">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="776" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1579755655381" />
+    <state x="776" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1580576111047" />
     <state width="914" height="285" key="GridCell.Tab.0.bottom" timestamp="1580487384667">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
