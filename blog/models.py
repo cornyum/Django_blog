@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
+from mdx_math import MathExtension
 
 
 class Category(models.Model):
@@ -48,6 +49,7 @@ class Post(models.Model):
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
+            MathExtension(enable_dollar_delimiter=True),
         ])
         self.excerpt = strip_tags(md.convert(self.body))[:60]
         super().save(*args, kwargs)

@@ -9,6 +9,7 @@ name = "pypi"
 django = "*"
 markdown = "*"
 gunicorn = "*"
+python-markdown-math = "*"
 
 [requires]
 python_version = "3.7"

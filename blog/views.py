@@ -8,6 +8,7 @@ from django.http import HttpResponse
 # Create your views here.
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
+from mdx_math import MathExtension
 
 from blog.models import Post, Category, Tag
 
@@ -27,6 +28,7 @@ def detail(request, pk):
         'markdown.extensions.codehilite',
         # 'markdown.extensions.toc',
         TocExtension(slugify=slugify),
+        MathExtension(enable_dollar_delimiter=True),
     ])
     post.body = md.convert(post.body)
     m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
