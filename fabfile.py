@@ -24,10 +24,12 @@ def deploy(c):
     supervisor_program_name = 'Django-blog'
 
     project_root_path = '~/app/Django_blog/'
+    supervisorctl_path = '/home/yuming/miniconda3/bin/supervisorctl'
+    pipenv_path = '/home/yuming/miniconda3/bin/pipenv'
 
     # 先停止应用
     with c.cd(supervisor_conf_path):
-        cmd = 'supervisorctl stop {}'.format(supervisor_program_name)
+        cmd = supervisorctl_path + ' stop {}'.format(supervisor_program_name)
         c.run(cmd)
 
     # 进入项目根目录，从 Git 拉取最新代码
@@ -38,11 +40,12 @@ def deploy(c):
 
     # 安装依赖，迁移数据库，收集静态文件
     with c.cd(project_root_path):
-        c.run('pipenv install --deploy --ignore-pipfile')
-        c.run('pipenv run python manage.py migrate')
-        c.run('pipenv run python collectstatic --noinput')
+        c.run(pipenv_path + ' install --deploy --ignore-pipfile')
+        c.run(pipenv_path + ' run python manage.py migrate')
+        c.run(pipenv_path + ' run python manage.py collectstatic --noinput')
 
     # 重新启动应用
     with c.cd(supervisor_conf_path):
-        cmd = 'supervisorctl start {}'.format(supervisor_program_name)
+        cmd = supervisorctl_path + ' start {}'.format(supervisor_program_name)
         c.run(cmd)
+

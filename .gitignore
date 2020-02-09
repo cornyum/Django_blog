@@ -20,3 +20,5 @@ Desktop.ini
 .idea
 
 _credentials.py
+*.bat
+*.shell
