@@ -1,0 +1,34 @@
+version: '3'
+
+volumes:
+  static:
+  database:
+
+services:
+  corn_ming_django_blog:
+    build:
+      context: .
+      dockerfile: compose/production/django/Dockerfile
+    image: corn_ming_django_blog
+    container_name: corn_ming_django_blog
+    working_dir: /app
+    volumes:
+      - database:/app/database
+      - static:/app/static
+    env_file:
+      - .envs/.production
+    ports:
+      - "8000:8000"
+    command: /start.sh
+
+  nginx:
+    build:
+      context: .
+      dockerfile: compose/production/nginx/Dockerfile
+    image: corn_ming_django_blog_nginx
+    container_name: corn_ming_django_blog_nginx
+    volumes:
+      - static:/app/Django_blog/static
+    ports:
+      - "80:80"
+      - "443:443"

@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  database_local:
+
+services:
+  django_blog:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    image: django_blog
+    container_name: django_blog
+    working_dir: /app
+    volumes:
+      - database_local:/app/database
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: /start.sh
