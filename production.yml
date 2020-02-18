@@ -28,7 +28,7 @@ services:
     image: corn_ming_django_blog_nginx
     container_name: corn_ming_django_blog_nginx
     volumes:
-      - static:/app/Django_blog/static
+      - static:/home/yuming/app/Django_blog/static
     ports:
       - "80:80"
       - "443:443"
