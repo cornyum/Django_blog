@@ -40,6 +40,11 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='分类')
     tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
+    views_num = models.PositiveIntegerField(default=0, editable=False)
+
+    def increase_views(self):
+        self.views_num += 1
+        self.save(update_fields=['views_num'])
 
     def __str__(self):
         return self.title
@@ -52,7 +57,7 @@ class Post(models.Model):
             MathExtension(enable_dollar_delimiter=True),
         ])
         self.excerpt = strip_tags(md.convert(self.body))[:60]
-        super().save(*args, kwargs)
+        super().save(args, kwargs)
 
     def get_absolute_url(self):
         # print((reverse('blog:detail', kwargs={'pk': self.pk})))

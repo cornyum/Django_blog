@@ -7,10 +7,10 @@ name = "pypi"
 fabric = "*"
 
 [packages]
-django = "*"
 markdown = "*"
 gunicorn = "*"
 python-markdown-math = "*"
+django = "==2.2.3"
 
 [requires]
 python_version = "3.7"
