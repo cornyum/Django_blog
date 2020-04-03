@@ -57,7 +57,7 @@ class Post(models.Model):
             MathExtension(enable_dollar_delimiter=True),
         ])
         self.excerpt = strip_tags(md.convert(self.body))[:60]
-        super().save(args, kwargs)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         # print((reverse('blog:detail', kwargs={'pk': self.pk})))

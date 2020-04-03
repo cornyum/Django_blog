@@ -1,0 +1,158 @@
+# Description
+
+Chosen Problem Solving and Program design as an optional course, you are required to solve all kinds of problems. Here, we get a new problem. 
+
+There is a very long board with length L centimeter, L is a positive integer, so we can evenly divide the board into L segments, and they are labeled by 1, 2, ... L from left to right, each is 1 centimeter long. Now we have to color the board - one segment with only one color. We can do following two operations on the board: 
+
+> 1. "C A B C" Color the board from segment A to segment B with color C. 
+> 2. "P A B" Output the number of different colors painted between segment A and segment B (including). 
+
+In our daily life, we have very few words to describe a color (red, green, blue, yellow…), so you may assume that the total number of different colors T is very small. To make it simple, we express the names of colors as color 1, color 2, ... color T. At the beginning, the board was painted in color 1. Now the rest of problem is left to your. 
+<!-- more -->
+
+# Input
+
+First line of input contains L (1 <= L <= 100000), T (1 <= T <= 30) and O (1 <= O <= 100000). Here O denotes the number of operations. Following O lines, each contains "C A B C" or "P A B" (here A, B, C are integers, and A may be larger than B) as an operation defined previously.
+
+# Output
+
+Ouput results of the output operation in order, each line contains a number.
+
+# Sample Input
+
+2 2 4
+C 1 1 2
+P 1 2
+C 2 2 2
+P 1 2
+
+# Sample Output
+
+2
+1
+
+## 题意
+
+给一个固定长度为L的画板
+有两个操作：
+C A B C：区间A--B内涂上颜色C。
+P A B：查询区间AB内颜色种类数。
+
+## 思路
+
+可以采用二进制的思想，第i种颜色，则标记二进制的i位为1，可以建立线段树，然后使用 `|` 运算传递二进制。
+
+## AC代码
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <string>
+#include <algorithm>
+#define FAST_IO std::ios::sync_with_stdio(false),std::cin.tie(0),std::cout.tie(0)
+#define pause system("pause")
+
+using namespace std;
+typedef long long ll;
+typedef unsigned int UINT;
+typedef unsigned long long ull;
+int const maxn = 100000 + 10;
+int a[maxn], color[maxn], ans;
+struct seg {
+    int l, r;
+    int v, tag;
+    void update(int x) {
+        v = x;
+        tag = x;
+    }
+}tree[maxn << 2];
+
+inline int lc(int x)  {return x << 1;}
+inline int rc(int x)  {return x << 1 | 1;}
+
+void push_up(int p) {
+    tree[p].v = tree[lc(p)].v | tree[rc(p)].v;
+}
+
+void push_down(int p) {
+    if (tree[p].tag) {
+        int v = tree[p].v;
+        tree[lc(p)].update(v);
+        tree[rc(p)].update(v);
+        tree[p].tag = 0;
+    }
+}
+
+void bulid(int p, int l, int r) {
+    tree[p].l = l, tree[p].r = r;
+    tree[p].tag = tree[p].v = 0;
+    if(l == r) {
+        tree[p].v = 1;
+        tree[p].tag = 0;
+        return;
+    }
+    int mid = (l + r ) >> 1;
+    bulid(lc(p), l, mid);
+    bulid(rc(p), mid + 1, r);
+    push_up(p);
+}
+
+void update(int p, int l, int r, int x) {
+    if (l <= tree[p].l && r >= tree[p].r) {
+        tree[p].update((1 << (x - 1)));
+        return;
+    }
+    push_down(p);
+    int mid = (tree[p].l + tree[p].r) >> 1;
+    if (l <= mid)
+        update(lc(p), l, r, x);
+    if (r > mid)
+        update(rc(p), l, r, x);
+    push_up(p);
+}
+
+ll query(int p, int l, int r) {
+    if(l <= tree[p].l && r >= tree[p].r) {
+        return tree[p].v;
+    }
+    push_down(p);
+    int ans = 0;
+    int mid = (tree[p].l + tree[p].r) >> 1;
+    if (l <= mid)
+        ans = ans | query(lc(p),l , r);
+    if (r > mid)
+        ans = ans | query(rc(p),l , r);
+    return ans;
+}
+
+int main(void) {
+    int n, m, t;
+    scanf("%d %d %d", &n, &t, &m);
+    bulid(1, 1, n);
+    while (m--) {
+        char opt[5];
+        int x, y;
+        scanf("%s %d %d", opt, &x, &y);
+        if (x > y)
+            swap(x, y);
+        if(opt[0] == 'C') {
+            int z;
+            scanf("%d", &z);
+            update(1, x, y, z);
+        } else {
+            int ans = query(1, x, y);
+            int num = 0;
+            while (ans) {
+                if (ans & 1) num++;
+                ans >>= 1;
+            }
+            printf("%d\n", num);
+        }
+    }
+    // pause;
+    return 0;
+}
+```
