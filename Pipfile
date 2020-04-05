@@ -12,6 +12,7 @@ gunicorn = "*"
 python-markdown-math = "*"
 django = "==2.2.3"
 faker = "*"
+django-pure-pagination = "*"
 
 [requires]
 python_version = "3.7"
