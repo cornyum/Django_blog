@@ -1,3 +1,5 @@
+import re
+
 import markdown
 from django.db import models
 from django.contrib.auth.models import User
@@ -5,8 +7,30 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.html import strip_tags
+from django.utils.text import slugify
+from markdown.extensions.toc import TocExtension
 from mdx_math import MathExtension
+
+
+def generate_rich_content(value) -> dict:
+    # post = super(PostDetailView, self).get_object(queryset=None)
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        # 'markdown.extensions.toc',
+        TocExtension(slugify=slugify),
+        MathExtension(enable_dollar_delimiter=True),
+    ])
+    content = md.convert(value)
+    m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    toc = m.group(1) if m is not None else ''
+
+    return {
+        'content': content,
+        'toc': toc,
+    }
 
 
 class Category(models.Model):
@@ -67,3 +91,15 @@ class Post(models.Model):
         verbose_name = '文章'
         verbose_name_plural = verbose_name
         ordering = ['-create_time', 'title']
+
+    @cached_property
+    def rich_content(self):
+        return generate_rich_content(self.body)
+
+    @property
+    def toc(self):
+        return self.rich_content.get("toc", "")
+
+    @property
+    def body_html(self):
+        return self.rich_content.get("content", "")

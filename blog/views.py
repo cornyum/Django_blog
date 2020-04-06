@@ -30,20 +30,20 @@ class PostDetailView(DetailView):
         self.object.increase_views()
         return response
 
-    def get_object(self, queryset=None):
-        post = super(PostDetailView, self).get_object(queryset=None)
-        md = markdown.Markdown(extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            # 'markdown.extensions.toc',
-            TocExtension(slugify=slugify),
-            MathExtension(enable_dollar_delimiter=True),
-        ])
-        post.body = md.convert(post.body)
-        m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
-        post.toc = m.group(1) if m is not None else ''
-
-        return post
+    # def get_object(self, queryset=None):
+    #     post = super(PostDetailView, self).get_object(queryset=None)
+    #     md = markdown.Markdown(extensions=[
+    #         'markdown.extensions.extra',
+    #         'markdown.extensions.codehilite',
+    #         # 'markdown.extensions.toc',
+    #         TocExtension(slugify=slugify),
+    #         MathExtension(enable_dollar_delimiter=True),
+    #     ])
+    #     post.body = md.convert(post.body)
+    #     m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    #     post.toc = m.group(1) if m is not None else ''
+    #
+    #     return post
 
 
 class ArchiveView(IndexView):
