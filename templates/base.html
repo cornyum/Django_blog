@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ username }}</title>
+    {% block title %}
+{#    <title>{{ username }}</title>#}
+    {% endblock %}
 
     <!-- meta -->
     <meta charset="UTF-8">
@@ -71,7 +73,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-5 col-xs-8">
                 <div class="logo">
-                    <h1><a href="{% url 'blog:index' %}"><b>{{ username.title }}</b></a></h1>
+                    <h1><a href="{% url 'blog:index' %}" style="font-weight: 400; font-style: italic;">Corn&nbsp;Ming</a></h1>
                 </div>
             </div><!-- col-md-4 -->
             <div class="col-md-8 col-sm-7 col-xs-4">

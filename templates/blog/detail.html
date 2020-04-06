@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load comments_extras %}
 
+{% block title %}
+    <title>{{ post.title }} | Corn Ming</title>
+{% endblock %}
+
 {% block main %}
     <article class="post post-1">
         <header class="entry-header">

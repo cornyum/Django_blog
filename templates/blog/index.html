@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>Corn&nbsp;Ming</title>
+{% endblock %}
+
 {% block main %}
     {% for post in post_list %}
     <article class="post {{ post.pk }}">
