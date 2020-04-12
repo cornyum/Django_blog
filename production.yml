@@ -41,7 +41,7 @@ services:
     image: corn_ming_django_blog_elasticsearch
     container_name: corn_ming_django_blog_elasticsearch
     volumes:
-      - esdata_local:/usr/share/elasticsearch/data
+      - esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
     environment:
