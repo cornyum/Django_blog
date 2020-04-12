@@ -34,7 +34,7 @@ services:
       - "80:80"
       - "443:443"
 
-  elasticsearch_local:
+  elasticsearch:
     build:
       context: .
       dockerfile: ./compose/production/elasticsearch/Dockfile
