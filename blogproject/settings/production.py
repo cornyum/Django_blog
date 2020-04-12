@@ -10,3 +10,4 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.cornming.com', '121.36.9.37']
+HAYSTACK_CONNECTIONS['default']['URL'] = 'http://corn_ming_django_blog_elasticsearch:9200/'

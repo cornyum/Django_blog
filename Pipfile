@@ -13,6 +13,8 @@ python-markdown-math = "*"
 django = "==2.2.3"
 faker = "*"
 django-pure-pagination = "*"
+elasticsearch = ">=2,<3"
+django-haystack = "*"
 
 [requires]
 python_version = "3.7"

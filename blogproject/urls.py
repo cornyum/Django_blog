@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('comments.urls')),
     path('all/rss/', AllPostRssFeed(), name='rss'),
+    path('search/', include('haystack.urls')),
 ]
