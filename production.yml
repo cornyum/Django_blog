@@ -25,7 +25,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: compose/production/nginx/Dockerfile
+      dockerfile: ./compose/production/nginx/Dockerfile
     image: corn_ming_django_blog_nginx
     container_name: corn_ming_django_blog_nginx
     volumes:
